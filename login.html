@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -18,12 +18,34 @@
 
 <body>
   <main class="mt-5">
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
+   <!--  <div class="container">
+        <div class="alert alert-danger text-center" role="alert">
         <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
       </div>
-    </div>
+    </div>-->
+    
+    
+
+    <form action="index.html" method="post" >
+      <div class="logo"><img src="img/login.png" alt="">
+      </div> <!--imagen insertada-->
+        <h1 class="h">INICIO DE SESION</h1>
+        <h2 class="h">Email</h2>
+          <div class="form-floating">
+          <input id="email" name="email" type="email" placeholder="Email" required>
+          </div>
+        <h2 class="h">Contraseña</h2>
+          <div class="form-floating">
+            <input id="pwd" name="pwd" type="password" placeholder="Contraseña" required >
+          </div> 
+        <div>
+        <button  id="btn" class="button" type="submit">Ingresar</button>
+       </div>   
+     </form>
+
+
   </main>
+
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
@@ -34,7 +56,7 @@
       <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
     </div>
   </footer>
-  <script src="js/login.js"></script>
+  <script type="text/javascript" src="js/login.js"></script>
 </body>
 
 </html>
