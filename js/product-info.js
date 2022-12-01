@@ -8,6 +8,7 @@ const url_comen = `https://japceibal.github.io/emercado-api/products_comments/${
 console.log(url_comen)
 let prod_rel_sel = [];
 let contenedor = document.getElementById("container");
+let comentario_agregar = ""
 //const contenedor 
 // segundo que cuando se cargue la pagina, aparesca automaticamente la información que quiero.
 //para esto: primero cargar la pagina y que pase 
@@ -74,16 +75,19 @@ function cargarcomentarios(coment) {
     }
   }
 
-  htmlAppendeable = `<div>
+  htmlAppendeable = `
+  <div id="comentariosNuevos">
+  </div>  
+  <div>
   <h2>Comentar</h2>
 </div>       
 <div>
  <p><b>Tu comentario</b></p>
 </div>       
 <div>
-  <form>
+  <form action="" method="get" id="form">
     <div>
-      <textarea id="comentarios" name="comentarios" rows=5 cols=70 ></textarea>
+      <textarea id="comentarios" name="comentarios" size= 100px></textarea>
     </div>
     <br>
     <div>
@@ -97,79 +101,160 @@ function cargarcomentarios(coment) {
 <div>
   <select name="punt" id="punt">
     <option value="1">1</option>
-    <option value="2">2</option></form>
+    <option value="2">2</option>
     <option value="3">3</option>
     <option value="4">4</option>
     <option value="5">5</option>
   </select>
 </div>
-<button id="btn-comentar" type="submit">Enviar</button>
+<button id="btn-enviar" type="submit">Enviar</button>
 <div>
 
 </div>
 <div><h2>Productos Relacionados</h2></div>
 
 `
-  contenedor.innerHTML += htmlAppendeable
-};
+  contenedor.innerHTML += htmlAppendeable;
 
-function prodrel(prod_rel){
-for (let elem of prod_rel) {
-  let div = document.createElement('div');
-  if (elem.id != prod_seleccionado) {
 
-    console.log(elem.id !== prod_seleccionado)
-    console.log(prod_seleccionado)
 
-    div.innerHTML += `<div>
-<div>
-<img id=${elem.name} type="button" src=${elem.image} alt="${elem.name}" style= "height:136px">
-</div>
-<div>${elem.name}</div>
-</div>`;
-    contenedor.appendChild(div);
-    div.addEventListener('click', function () {
+  let formComentar = document.getElementById("form");
+  let divComentar = document.getElementById("comentariosNuevos")
+  let usuario = JSON.parse(localStorage.getItem("usuario"))
 
-      console.log(elem.id)
-      localStorage.setItem("prodSelect", elem.id)
-      window.location.href = "product-info.html"
+
+  formComentar.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    let newComent = document.getElementById("comentarios").value
+    let nivel = document.getElementById("punt").value
     
-    })
-    
-  }
-}
-};
-document.addEventListener("DOMContentLoaded",function(){
+    var date = new Date();
+ 
+    var dia = date.toDateString();
 
-  fetch(url_prod)
-  .then(respuesta => respuesta.json())
-  .then(datos => {
-    let producto = datos;
-    console.log(producto.products)
-    cargarprod(producto.products)
+    var hora = date.toLocaleTimeString();
 
 
 
 
+    if (newComent !== null) {
+      htmlAppendeable = `<b> ${usuario}</b>-<it>${dia} ${hora}</it>`
+      for (let i = 0; i < nivel; i++) {
+        htmlAppendeable += `<span class="fa fa-star checked"></span>`
+      }
 
-// parte 3
-
-fetch(url_comen)
-  .then(resp => resp.json())
-  .then(data => {
-    let comentarios = data;
-    console.log(comentarios);
-    cargarcomentarios(comentarios)
-  
+      htmlAppendeable += `<br>${newComent}`
 
 
-fetch(url_prod)
-  .then(respuesta => respuesta.json())
-  .then(info => {
-    let prod_rel = info.products;
-    console.log(prod_rel);
-   prodrel(prod_rel)   
+
+
+      divComentar.innerHTML = htmlAppendeable
+    }
   })
-});
-});
+
+};
+
+
+function prodrel(prod_rel) {
+  
+    let div = document.createElement('div');
+    for (let elem of prod_rel) {
+
+  
+      if (elem.id != prod_seleccionado) {
+        console.log(elem.id !== prod_seleccionado)
+        console.log(prod_seleccionado)
+        var imagene=[elem.image]
+        console.log(imagene)
+    
+
+      div.innerHTML +=
+      
+      `
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-50" src="${imagen}" alt="First slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-50" src="" alt="Second slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-50" src="" alt="Third slide">
+    </div>
+    <div class="carousel-item">
+    <img class="d-block w-50" src="" alt="Third slide">
+  </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+   
+
+
+      <ul class="list-group list-group-horizontal"-sm>
+        <li class="list-group-item"><img class="d-block w-100" src="${elem.image}" ></li>
+   
+      </ul>  
+ 
+`
+
+     contenedor.appendChild(div);
+      div.addEventListener('click', function () {
+
+        console.log(elem.id)
+        localStorage.setItem("prodSelect", elem.id)
+        window.location.href = "product-info.html"
+
+      })
+
+    }
+  }
+};
+
+document.addEventListener("DOMContentLoaded", function () {
+  fetch(url_prod)
+    .then(respuesta => respuesta.json())
+    .then(datos => {
+      let producto = datos;
+      console.log(producto.products)
+      cargarprod(producto.products)
+      
+
+
+
+
+
+      // parte 3
+
+      fetch(url_comen)
+        .then(resp => resp.json())
+        .then(data => {
+          let comentarios = data;
+          console.log(comentarios);
+          cargarcomentarios(comentarios)
+
+
+
+          fetch(url_prod)
+            .then(respuesta => respuesta.json())
+            .then(info => {
+              let prod_rel = info.products;
+              console.log(prod_rel);
+              prodrel(prod_rel)
+            })
+        });
+    });
 });
