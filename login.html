@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -56,7 +56,91 @@
       <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
     </div>
   </footer>
+
   <script type="text/javascript" src="js/login.js"></script>
+
+  // Import the functions you need from the SDKs you need
+  
+  <script type="module">
+
+    // Import the functions you need from the SDKs you need
+  
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
+  
+    // TODO: Add SDKs for Firebase products that you want to use
+  
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+  
+    // Your web app's Firebase configuration
+  
+    const firebaseConfig = {
+  
+      apiKey: "AIzaSyD4-nRiR87eWMVlrw3OeGUxvjJdoOUCkbY",
+  
+      authDomain: "e-mercado-f6c91.firebaseapp.com",
+  
+      projectId: "e-mercado-f6c91",
+  
+      storageBucket: "e-mercado-f6c91.appspot.com",
+  
+      messagingSenderId: "1027597661076",
+  
+      appId: "1:1027597661076:web:cc975629ff415af03f9581"
+  
+    };
+  
+  
+    // Initialize Firebase
+  
+    const app = initializeApp(firebaseConfig);
+    
+    //copiado y pegado 1
+    import { GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-auth.js";
+const provider = new GoogleAuthProvider();
+// copiado y pegado 2
+provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+import { getAuth } from "firebase/auth";
+
+const auth = getAuth();
+auth.languageCode = 'it';
+// To apply the default browser preference instead of explicitly setting it.
+// firebase.auth().useDeviceLanguage();
+import { signInWithPopup} from "https://www.gstatic.com/firebasejs/9.12.1/firebase-auth.js";
+
+
+signInWithPopup(auth, provider)
+  .then((result) => {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    // The signed-in user info.
+    const user = result.user;
+    // ...
+  }).catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.customData.email;
+    // The AuthCredential type that was used.
+    const credential = GoogleAuthProvider.credentialFromError(error);
+    // ...
+  });
+
+  import { signInWithRedirect } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-auth.js";
+
+
+signInWithRedirect(auth, provider);
+
+
+
+
+signInWithRedirect(auth, provider);
+  </script>
+
+    
+   
 </body>
 
-</html>
+</html>     

@@ -36,9 +36,119 @@
     </div>
   </nav>
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+    
+    <div id="container">
+      
+    </div>
+  </form>
+    <h1>Forma de Pago</h1>
+    <form action="" id="form" novalidate>
+
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="envio15" name="radio-stacked" required>
+        <label class="form-check-label" for="envio15">Premium 15%</label>
+      </div>
+
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="envio10" name="radio-stacked" required>
+        <label class="form-check-label" for="envio10">Express 10%</label>
+      </div>
+
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="envio5" name="radio-stacked" required>
+        <label class="form-check-label" for="envio5">Estandar5%</label>
+        <div class="invalid-feedback">Marca una</div>
+      </div>
+
+
+      <div class="col-md-6">
+        <label class="form-label" for="calle">Calle</label>
+        <input type="text" class="form-control" id="calle" required>
+
+        <div class="invalid-feedback">Rellenar</div>
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-text-label" for="validationFormCheck1">Esquina</label>
+        <input type="text" class="form-control" id="validationFormCheck1" required>
+        <div class="invalid-feedback">Rellenar</div>
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-check-label" for="validationFormCheck1">Número</label>
+        <input type="text" class="form-control" id="validationFormCheck1" required>
+        <div class="invalid-feedback">Rellenar</div>
+      </div>
+
+      <div id="body5">
+        <h1>Forma de Pago</h1>
+        <p>Elegir Forma de pago    
+        <a class="link" role="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Seleccionar
+        </a></p>
+        <div class="invalid-feedback">Seleccionar </div>
+        </div> 
+
+
+      <div class="mb-3">
+        <button class="btn btn-primary" type="submit">Confirmar Compra</button>
+      </div>
+      
+     
+    
+
+    <div id="modal-container">
+
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Forma de pago</h5>
+
+              </button>
+            </div>
+            <div class="modal-body">
+              <form action="" class="needs-validation" novalidate>
+              <div>
+                <label for="credCard">Tarjeta de Credito</label>
+                <input id="credCard" type="radio" name="formpago" value="withcard" class="form-check" required>
+                <div class="invalid-feedback">Seleccionar </div>
+              </div>
+              <div>
+               
+                  <div>
+                    <label for="NumCard">Número de Tarjeta</label>
+                    <input type="text" maxlength="16" id="NumCard" placeholder="1111 1111 1111 1111">
+                    <label for="segNum">Codigo de Seg</label>
+                    <input type="text" maxlength="3" id="segNum" placeholder="123">
+                  </div>
+                  <div>
+                    <label for="fechaVenc">Vencimiento</label>
+                    <input type="text" maxlength="5" id="fechaVenc" placeholder="mm-aa">
+                  </div>
+
+                  <div>
+                    <label for="trsnfbank">Transferencia Bancaria</label>
+                    <input id="trsnfbank" type="radio" name="formpago" value="account" required>
+                    <div class="invalid-feedback">Seleccionar </div>
+                  </div>
+                  <div>
+                    <label for="account">Cuenta</label>
+                    <input type="text" maxlength="16" id="account" placeholder="1111 1111 1111 1111">
+                  </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+              
+            </div>
+            </form>
+          </form>
+          </div>
+        </div>
       </div>
     </div>
   </main>
@@ -52,17 +162,12 @@
       <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
     </div>
   </footer>
-  <div id="spinner-wrapper">
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </div>
   <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js.map"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
+  <script src="js/index.js"></script>
+
 </body>
 
 </html>
